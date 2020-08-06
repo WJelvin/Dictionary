@@ -15,6 +15,5 @@ namespace Dictionary.Data.Models
         public string EnglishPreamble { get; set; }
         public string SwedishText { get; set; }
         public string EnglishText { get; set; }
-        public IEnumerable<string> Keywords { get; set; }
     }
 }

@@ -11,8 +11,8 @@ namespace Dictionary.Data.Services
     {
         List<Translation> db = new List<Translation>()
             {
-                new Translation { Id = 1, SwedishTitle = "Rubrik", EnglishTitle = "Headline", SwedishPreamble = "En ingress", EnglishPreamble = "A preamble", EnglishText = "Main text", SwedishText = "Huvudtext", Keywords = new List<string>() { "text", "english", "swedish"} },
-                new Translation { Id = 2, SwedishTitle = "Rubrik 2", EnglishTitle = "Headline 2", SwedishPreamble = "En ingress 2", EnglishPreamble = "A preamble 2", EnglishText = "Main text 2", SwedishText = "Huvudtext 2", Keywords = new List<string>() { "text2", "english", "swedish"} },
+                new Translation { Id = 1, SwedishTitle = "Rubrik", EnglishTitle = "Headline", SwedishPreamble = "En ingress", EnglishPreamble = "A preamble", EnglishText = "Main text", SwedishText = "Huvudtext" },
+                new Translation { Id = 2, SwedishTitle = "Rubrik 2", EnglishTitle = "Headline 2", SwedishPreamble = "En ingress 2", EnglishPreamble = "A preamble 2", EnglishText = "Main text 2", SwedishText = "Huvudtext 2" },
             };
 
         public InMemoryTranslationData()
@@ -44,11 +44,6 @@ namespace Dictionary.Data.Services
             return db.OrderBy(t => t.Id);
         }
 
-        public IEnumerable<Translation> GetByKeyword(string keyword)
-        {
-            return db.FindAll(t => t.Keywords.Contains(keyword.ToLower().Trim()));
-        }
-
         public void Update(Translation translation)
         {
             var existing = Get(translation.Id);
@@ -60,7 +55,6 @@ namespace Dictionary.Data.Services
                 existing.EnglishPreamble = translation.EnglishPreamble;
                 existing.SwedishText = translation.SwedishText;
                 existing.EnglishText = translation.EnglishText;
-                existing.Keywords = translation.Keywords;
             }
         }
     }

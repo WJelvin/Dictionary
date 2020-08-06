@@ -11,7 +11,6 @@ namespace Dictionary.Data.Services
     {
         IEnumerable<Translation> GetAll();
         Translation Get(int id);
-        IEnumerable<Translation> GetByKeyword(string keyword);
         void Add(Translation translation);
         void Update(Translation translation);
         void Delete(int id);
