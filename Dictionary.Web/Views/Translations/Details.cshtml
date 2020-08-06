@@ -1,0 +1,67 @@
+﻿@model Dictionary.Data.Models.Translation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details for @Html.DisplayFor(model => model.SwedishTitle)</h2>
+
+<div>
+    <h4>Translation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SwedishTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SwedishTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EnglishTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnglishTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SwedishPreamble)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SwedishPreamble)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EnglishPreamble)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnglishPreamble)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SwedishText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SwedishText)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EnglishText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnglishText)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Keywords)
+        </dt>
+
+        <dd>
+            @String.Join(", ", Model.Keywords)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

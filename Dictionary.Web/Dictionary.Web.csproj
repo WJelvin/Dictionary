@@ -181,6 +181,10 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Translations\Index.cshtml" />
+    <Content Include="Views\Translations\Details.cshtml" />
+    <Content Include="Views\Translations\Delete.cshtml" />
+    <Content Include="Views\Translations\Create.cshtml" />
+    <Content Include="Views\Translations\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

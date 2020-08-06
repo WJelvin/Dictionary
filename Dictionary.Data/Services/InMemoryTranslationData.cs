@@ -12,7 +12,7 @@ namespace Dictionary.Data.Services
         List<Translation> db = new List<Translation>()
             {
                 new Translation { Id = 1, SwedishTitle = "Rubrik", EnglishTitle = "Headline", SwedishPreamble = "En ingress", EnglishPreamble = "A preamble", EnglishText = "Main text", SwedishText = "Huvudtext", Keywords = new List<string>() { "text", "english", "swedish"} },
-                new Translation { Id = 2, SwedishTitle = "Rubrik 2", EnglishTitle = "Headline", SwedishPreamble = "En ingress 2", EnglishPreamble = "A preamble", EnglishText = "Main text 2", SwedishText = "Huvudtext 2", Keywords = new List<string>() { "text2", "english", "swedish"} },
+                new Translation { Id = 2, SwedishTitle = "Rubrik 2", EnglishTitle = "Headline 2", SwedishPreamble = "En ingress 2", EnglishPreamble = "A preamble 2", EnglishText = "Main text 2", SwedishText = "Huvudtext 2", Keywords = new List<string>() { "text2", "english", "swedish"} },
             };
 
         public InMemoryTranslationData()
