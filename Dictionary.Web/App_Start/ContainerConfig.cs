@@ -16,9 +16,10 @@ namespace Dictionary.Web.App_Start
             var builder = new ContainerBuilder();
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
-            builder.RegisterType<InMemoryTranslationData>()
+            builder.RegisterType<SqlTranslationData>()
                    .As<ITranslationRepository>()
-                   .SingleInstance();
+                   .InstancePerRequest();
+            builder.RegisterType<DictionaryDbContext>().InstancePerRequest();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
