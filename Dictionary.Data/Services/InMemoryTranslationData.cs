@@ -44,6 +44,11 @@ namespace Dictionary.Data.Services
             return db.OrderBy(t => t.Id);
         }
 
+        public IEnumerable<Translation> Search(string searchString)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Translation translation)
         {
             var existing = Get(translation.Id);

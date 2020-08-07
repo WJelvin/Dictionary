@@ -198,6 +198,8 @@
     <Content Include="Views\Translations\Delete.cshtml" />
     <Content Include="Views\Translations\Create.cshtml" />
     <Content Include="Views\Translations\Edit.cshtml" />
+    <Content Include="Views\Translations\Browse.cshtml" />
+    <Content Include="Views\Translations\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

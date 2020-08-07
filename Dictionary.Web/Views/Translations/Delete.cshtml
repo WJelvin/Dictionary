@@ -4,9 +4,7 @@
     ViewBag.Title = "Radera";
 }
 
-<h2>Radera</h2>
-
-<h3>Är du säker på att du vill radera översättningen?</h3>
+<h2>Är du säker på att du vill radera översättningen?</h2>
 <div>
     <h4>Översättning</h4>
     <hr />
@@ -60,7 +58,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Radera" class="btn btn-default" /> |
+            <input type="submit" value="Radera" class="btn btn-danger" /> |
             @Html.ActionLink("Tillbaka till listan", "Index")
         </div>
     }

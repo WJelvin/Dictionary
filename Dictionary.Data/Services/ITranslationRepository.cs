@@ -14,5 +14,6 @@ namespace Dictionary.Data.Services
         void Add(Translation translation);
         void Update(Translation translation);
         void Delete(int id);
+        IEnumerable<Translation> Search(string searchString);
     }
 }

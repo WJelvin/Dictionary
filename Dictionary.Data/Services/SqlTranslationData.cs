@@ -41,6 +41,18 @@ namespace Dictionary.Data.Services
                    select t;
         }
 
+        public IEnumerable<Translation> Search(string searchString)
+        {
+            return from t in db.Translations
+                   where t.SwedishText.Contains(searchString) ||
+                   t.EnglishText.Contains(searchString) ||
+                   t.SwedishPreamble.Contains(searchString) ||
+                   t.EnglishPreamble.Contains(searchString) ||
+                   t.SwedishTitle.Contains(searchString) ||
+                   t.EnglishTitle.Contains(searchString)
+                   select t;
+        }
+
         public void Update(Translation translation)
         {
             var entry = db.Entry(translation);

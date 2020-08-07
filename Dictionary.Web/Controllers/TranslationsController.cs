@@ -1,5 +1,6 @@
 ﻿using Dictionary.Data.Models;
 using Dictionary.Data.Services;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,7 +72,7 @@ namespace Dictionary.Web.Controllers
             if (ModelState.IsValid)
             {
                 db.Update(translation);
-                TempData["Message"] = "You have saved the translation!";
+                TempData["Message"] = "Du har sparat översättningen!";
                 return RedirectToAction("Details", new { id = translation.Id });
             }
             return View(translation);
@@ -94,6 +95,38 @@ namespace Dictionary.Web.Controllers
         {
             db.Delete(id);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Browse()
+        {
+            var model = db.GetAll();
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult BrowseResults(IEnumerable<Translation> model)
+        {
+            if(model != null)
+            {
+                return View("Browse", model);
+            } else
+            {
+                return View("Search");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Search(string searchString)
+        {
+            var model = db.Search(searchString);
+            return View("Browse", model);
         }
     }
 }
