@@ -37,19 +37,17 @@ namespace Dictionary.Data.Services
         public IEnumerable<Translation> GetAll()
         {
             return from t in db.Translations
-                   orderby t.SwedishTitle
+                   orderby t.SV_Text
                    select t;
         }
 
         public IEnumerable<Translation> Search(string searchString)
         {
             return from t in db.Translations
-                   where t.SwedishText.Contains(searchString) ||
-                   t.EnglishText.Contains(searchString) ||
-                   t.SwedishPreamble.Contains(searchString) ||
-                   t.EnglishPreamble.Contains(searchString) ||
-                   t.SwedishTitle.Contains(searchString) ||
-                   t.EnglishTitle.Contains(searchString)
+                   where t.SV_Text.Contains(searchString) ||
+                   t.EN_Text.Contains(searchString) ||
+                   t.TranslationKey.Contains(searchString) ||
+                   t.CurrentView.Contains(searchString)
                    select t;
         }
 

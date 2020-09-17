@@ -17,22 +17,27 @@
     <table class="table table-striped table-hover table-dark">
         <tr>
             <th>
-                <p>Rubrik</p>
+                <p>CurrentView</p>
             </th>
             <th>
-                <p>Ingress</p>
+                <p>TranslationKey</p>
             </th>
-            <th></th>
+            <th>
+                Svensk text
+            </th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SwedishTitle)
+                    @Html.DisplayFor(modelItem => item.CurrentView)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SwedishPreamble)
+                    @Html.DisplayFor(modelItem => item.TranslationKey)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SV_Text)
                 </td>
                 <td style="white-space:nowrap;">
                     @Html.ActionLink("Redigera", "Edit", new { id = item.Id }) |

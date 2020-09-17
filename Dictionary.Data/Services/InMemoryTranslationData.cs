@@ -11,8 +11,8 @@ namespace Dictionary.Data.Services
     {
         List<Translation> db = new List<Translation>()
             {
-                new Translation { Id = 1, SwedishTitle = "Rubrik", EnglishTitle = "Headline", SwedishPreamble = "En ingress", EnglishPreamble = "A preamble", EnglishText = "Main text", SwedishText = "Huvudtext" },
-                new Translation { Id = 2, SwedishTitle = "Rubrik 2", EnglishTitle = "Headline 2", SwedishPreamble = "En ingress 2", EnglishPreamble = "A preamble 2", EnglishText = "Main text 2", SwedishText = "Huvudtext 2" },
+                new Translation { Id = 1, TranslationKey = "frontpage-some-text", CurrentView = "Frontpage", EN_Text = "Main text", SV_Text = "Huvudtext" },
+                new Translation { Id = 2, TranslationKey = "librispage-search-text", CurrentView = "Librispage", EN_Text = "Main text 2", SV_Text = "Huvudtext 2" },
             };
 
         public InMemoryTranslationData()
@@ -54,12 +54,10 @@ namespace Dictionary.Data.Services
             var existing = Get(translation.Id);
             if (existing != null)
             {
-                existing.SwedishTitle = translation.SwedishTitle;
-                existing.EnglishTitle = translation.EnglishTitle;
-                existing.SwedishPreamble = translation.SwedishPreamble;
-                existing.EnglishPreamble = translation.EnglishPreamble;
-                existing.SwedishText = translation.SwedishText;
-                existing.EnglishText = translation.EnglishText;
+                existing.TranslationKey = translation.TranslationKey;
+                existing.CurrentView = translation.CurrentView;
+                existing.SV_Text = translation.SV_Text;
+                existing.EN_Text = translation.EN_Text;
             }
         }
     }
