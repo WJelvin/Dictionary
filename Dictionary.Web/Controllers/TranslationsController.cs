@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Dictionary.Web.Viewmodels;
 
 namespace Dictionary.Web.Controllers
 {
@@ -18,11 +19,31 @@ namespace Dictionary.Web.Controllers
             this.db = db;
         }
 
+        private TranslationViewmodel MapModelToViewmodel(Translation translationModel)
+        {
+            var viewmodel = new TranslationViewmodel
+            {
+                Id = translationModel.Id,
+                CurrentView = translationModel.CurrentView,
+                TranslationKey = translationModel.TranslationKey,
+                SV_Text = translationModel.SV_Text,
+                EN_Text = translationModel.EN_Text
+            };
+
+            return viewmodel;
+        }
+
         [HttpGet]
         public ActionResult Index()
         {
-            var model = db.GetAll();
-            return View(model);
+            
+            var models = db.GetAll();
+            List<TranslationViewmodel> vmmodels = new List<TranslationViewmodel>();
+            foreach (var model in models)
+            {
+                vmmodels.Add(MapModelToViewmodel(model));
+            }
+            return View(vmmodels);
         }
 
         [HttpGet]
