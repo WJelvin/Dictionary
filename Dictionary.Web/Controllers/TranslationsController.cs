@@ -41,7 +41,7 @@ namespace Dictionary.Web.Controllers
         {
             return View();
         }
-
+        [ValidateInput(false)] //Ska bytas ut mot AllowHtml i viewmodel när vi har en
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Translation translation)
@@ -67,6 +67,7 @@ namespace Dictionary.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)] //Ska bytas ut mot AllowHtml i viewmodel när vi har en
         public ActionResult Edit(Translation translation)
         {
             if (ModelState.IsValid)
@@ -123,6 +124,7 @@ namespace Dictionary.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)] //Ska bytas ut mot AllowHtml i viewmodel när vi har en
         public ActionResult Search(string searchString)
         {
             var model = db.Search(searchString);

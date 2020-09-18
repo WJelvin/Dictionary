@@ -197,6 +197,7 @@
     <Content Include="Views\Translations\Edit.cshtml" />
     <Content Include="Views\Translations\Browse.cshtml" />
     <Content Include="Views\Translations\Search.cshtml" />
+    <Content Include="Views\Translations\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

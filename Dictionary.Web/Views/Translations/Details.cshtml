@@ -4,7 +4,7 @@
     ViewBag.Title = "Detaljer";
 }
 
-<h2>Detaljer för @Html.DisplayFor(model => model.SV_Text)</h2>
+<h2>Detaljer för @Html.DisplayFor(model => model.TranslationKey)</h2>
 
 <div>
     <h4>Översättning</h4>
@@ -24,7 +24,7 @@
         <dd>
             @Html.DisplayFor(model => model.CurrentView)
         </dd>
-
+        <br />
         <dt>
             @Html.DisplayNameFor(model => model.SV_Text)
         </dt>
@@ -32,6 +32,7 @@
         <dd>
             @Html.DisplayFor(model => model.SV_Text)
         </dd>
+        <br />
         <dt>
             @Html.DisplayNameFor(model => model.EN_Text)
         </dt>

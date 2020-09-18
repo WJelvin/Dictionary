@@ -57,12 +57,10 @@
       <DependentUpon>202009170615464_NewModelForFrescati.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Page.cs" />
     <Compile Include="Models\Translation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DictionaryDbContext.cs" />
     <Compile Include="Services\InMemoryTranslationData.cs" />
-    <Compile Include="Services\IPageRepository.cs" />
     <Compile Include="Services\ITranslationRepository.cs" />
     <Compile Include="Services\SqlTranslationData.cs" />
   </ItemGroup>
