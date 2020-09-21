@@ -33,6 +33,20 @@ namespace Dictionary.Web.Controllers
             return viewmodel;
         }
 
+        private Translation MapViewmodelToModel(TranslationViewmodel translationViewmodel)
+        {
+            var viewmodel = new Translation()
+            {
+                Id = translationViewmodel.Id,
+                CurrentView = translationViewmodel.CurrentView,
+                TranslationKey = translationViewmodel.TranslationKey,
+                SV_Text = translationViewmodel.SV_Text,
+                EN_Text = translationViewmodel.EN_Text
+            };
+
+            return viewmodel;
+        }
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -54,7 +68,8 @@ namespace Dictionary.Web.Controllers
             {
                 return View("NotFound");
             }
-            return View(model);
+            var viewmodel = MapModelToViewmodel(model);
+            return View(viewmodel);
         }
 
         [HttpGet]
@@ -62,15 +77,15 @@ namespace Dictionary.Web.Controllers
         {
             return View();
         }
-        [ValidateInput(false)] //Ska bytas ut mot AllowHtml i viewmodel när vi har en
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Translation translation)
+        public ActionResult Create(TranslationViewmodel translationViewmodel)
         {
             if (ModelState.IsValid)
             {
-                db.Add(translation);
-                return RedirectToAction("Details", new { id = translation.Id });
+                var model = MapViewmodelToModel(translationViewmodel);
+                db.Add(model);
+                return RedirectToAction("Details", new { id = model.Id });
             }
             return View();
         }
@@ -83,21 +98,23 @@ namespace Dictionary.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(model);
+
+            var viewmodel = MapModelToViewmodel(model);
+            return View(viewmodel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ValidateInput(false)] //Ska bytas ut mot AllowHtml i viewmodel när vi har en
-        public ActionResult Edit(Translation translation)
+        public ActionResult Edit(TranslationViewmodel translationViewmodel)
         {
             if (ModelState.IsValid)
             {
-                db.Update(translation);
+                var model = MapViewmodelToModel(translationViewmodel);
+                db.Update(model);
                 TempData["Message"] = "Du har sparat översättningen!";
-                return RedirectToAction("Details", new { id = translation.Id });
+                return RedirectToAction("Details", new { id = model.Id });
             }
-            return View(translation);
+            return View(translationViewmodel);
         }
 
         [HttpGet]
@@ -108,7 +125,10 @@ namespace Dictionary.Web.Controllers
             {
                 return View("NotFound");
             }
-            return View(model);
+
+            var viewmodel = MapModelToViewmodel(model);
+
+            return View(viewmodel);
         }
 
         [HttpPost]
@@ -122,12 +142,17 @@ namespace Dictionary.Web.Controllers
         [HttpGet]
         public ActionResult Browse()
         {
-            var model = db.GetAll();
-            return View(model);
+            var models = db.GetAll();
+            List<TranslationViewmodel> vmmodels = new List<TranslationViewmodel>();
+            foreach (var model in models)
+            {
+                vmmodels.Add(MapModelToViewmodel(model));
+            }
+            return View(vmmodels);
         }
 
         [HttpGet]
-        public ActionResult BrowseResults(IEnumerable<Translation> model)
+        public ActionResult BrowseResults(IEnumerable<TranslationViewmodel> model)
         {
             if(model != null)
             {
@@ -145,11 +170,15 @@ namespace Dictionary.Web.Controllers
         }
 
         [HttpPost]
-        [ValidateInput(false)] //Ska bytas ut mot AllowHtml i viewmodel när vi har en
         public ActionResult Search(string searchString)
         {
-            var model = db.Search(searchString);
-            return View("Browse", model);
+            var models = db.Search(searchString);
+            List<TranslationViewmodel> vmmodels = new List<TranslationViewmodel>();
+            foreach (var model in models)
+            {
+                vmmodels.Add(MapModelToViewmodel(model));
+            }
+            return View("Browse", vmmodels);
         }
     }
 }

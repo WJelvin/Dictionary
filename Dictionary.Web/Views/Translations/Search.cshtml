@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Dictionary.Data.Models.Translation>
+﻿@model IEnumerable<Dictionary.Web.Viewmodels.TranslationViewmodel>
 
 @{
     ViewBag.Title = "Sök";
@@ -23,5 +23,5 @@
 }
 
 <div>
-    @Html.ActionLink("Tillbaka till listan", "Index")
+    <a href="javascript:void(0);" onclick="history.go(-1);">Tillbaka</a>
 </div>

@@ -1,4 +1,4 @@
-﻿@model Dictionary.Data.Models.Translation
+﻿@model Dictionary.Web.Viewmodels.TranslationViewmodel
 
 @{
     ViewBag.Title = "Detaljer";
@@ -44,5 +44,5 @@
 </div>
 <p>
     @Html.ActionLink("Redigera", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Tillbaka till listan", "Index")
+    <a href="javascript:void(0);" onclick="history.go(-1);">Tillbaka</a>
 </p>

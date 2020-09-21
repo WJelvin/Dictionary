@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Dictionary.Data.Models.Translation>
+﻿@model IEnumerable<Dictionary.Web.Viewmodels.TranslationViewmodel>
 
 @{
     ViewBag.Title = "Translator";
@@ -14,7 +14,7 @@
 </div>
 
 <div>
-    Bläddra per vy: @Html.DropDownList("Vy", new SelectList(Model.Select(m => m.CurrentView).Distinct(), "Välj vy"), new { @class = "btn btn-default dropdown-toggle" }) Ej implementerad ännu, avvaktar viewmodel
+    @*Bläddra per vy: @Html.DropDownList("Vy", new SelectList(Model.Select(m => m.CurrentView).Distinct(), "Välj vy"), new { @class = "btn btn-default dropdown-toggle" }) Ej implementerad ännu, behöver nog göra viewmodel som innehåller lista*@
     <br />
     <br />
 </div>
