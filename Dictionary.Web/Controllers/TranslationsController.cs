@@ -1,12 +1,10 @@
-﻿using Dictionary.Data.Models;
-using Dictionary.Data.Services;
-using Microsoft.Ajax.Utilities;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Dictionary.Data.Models;
+using Dictionary.Data.Services;
 using Dictionary.Web.Viewmodels;
+using Microsoft.Ajax.Utilities;
 
 namespace Dictionary.Web.Controllers
 {
@@ -35,7 +33,7 @@ namespace Dictionary.Web.Controllers
 
         private Translation MapViewmodelToModel(TranslationViewmodel translationViewmodel)
         {
-            var viewmodel = new Translation()
+            var viewmodel = new Translation
             {
                 Id = translationViewmodel.Id,
                 CurrentView = translationViewmodel.CurrentView,
@@ -140,27 +138,38 @@ namespace Dictionary.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Browse()
+        public ActionResult Browse(string views = null)
         {
             var models = db.GetAll();
-            List<TranslationViewmodel> vmmodels = new List<TranslationViewmodel>();
-            foreach (var model in models)
+            var dbViews = from n in models select n.CurrentView;
+            dbViews = dbViews.Distinct();
+            ViewBag.dbViews = dbViews;
+            if (!views.IsNullOrWhiteSpace())
             {
-                vmmodels.Add(MapModelToViewmodel(model));
+                models =  models.Where(t => t.CurrentView == views);
             }
-            return View(vmmodels);
+
+            var vmmodels = new List<TranslationViewmodel>();
+            foreach (var translation in models)
+            {
+                vmmodels.Add(MapModelToViewmodel(translation));
+            }
+            var viewmodel = new TranslationListViewModel();
+            viewmodel.Translations = vmmodels;
+
+
+            return View(viewmodel);
         }
 
         [HttpGet]
-        public ActionResult BrowseResults(IEnumerable<TranslationViewmodel> model)
+        public ActionResult BrowseResults(TranslationListViewModel model)
         {
             if(model != null)
             {
                 return View("Browse", model);
-            } else
-            {
-                return View("Search");
             }
+
+            return View("Search");
         }
 
         [HttpGet]
@@ -172,13 +181,19 @@ namespace Dictionary.Web.Controllers
         [HttpPost]
         public ActionResult Search(string searchString)
         {
+
             var models = db.Search(searchString);
+            var dbViews = from n in models select n.CurrentView;
+            dbViews = dbViews.Distinct();
+            ViewBag.dbViews = dbViews;
             List<TranslationViewmodel> vmmodels = new List<TranslationViewmodel>();
             foreach (var model in models)
             {
                 vmmodels.Add(MapModelToViewmodel(model));
             }
-            return View("Browse", vmmodels);
+            var vm = new TranslationListViewModel();
+            vm.Translations = vmmodels;
+            return View("Browse", vm);
         }
     }
 }

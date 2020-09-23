@@ -1,20 +1,25 @@
-﻿@model IEnumerable<Dictionary.Web.Viewmodels.TranslationViewmodel>
+﻿@model Dictionary.Web.Viewmodels.TranslationListViewModel
 
 @{
     ViewBag.Title = "Translator";
     ViewBag.Message = "Hello!";
+    var selectedView = "";
 }
 
 <div class="jumbotron">
     <h1>Dictionary</h1>
-    <p class="lead">En applikation för att spara, visa och redigera översättningar.</p>
-    <p>
-        @Html.ActionLink("Skapa ny översättning", "Create", null, new { @class = "btn btn-default" })
-    </p>
+    <p class="lead">En applikation för att skapa, visa, redigera och ta bort översättningar.</p>
 </div>
 
 <div>
-    @*Bläddra per vy: @Html.DropDownList("Vy", new SelectList(Model.Select(m => m.CurrentView).Distinct(), "Välj vy"), new { @class = "btn btn-default dropdown-toggle" }) Ej implementerad ännu, behöver nog göra viewmodel som innehåller lista*@
+    @using (Html.BeginForm("Browse", "Translations", FormMethod.Get))
+    {
+        <label>Filtrera <u>alla</u> översättningar per vy </label>
+        @Html.DropDownList("views", new SelectList(ViewBag.dbViews), "Alla");
+        <input type="submit" value="Filtrera" />
+        @Html.ActionLink("Återställ", "Browse")
+    }
+
     <br />
     <br />
 </div>
@@ -23,10 +28,10 @@
     <table class="table table-striped table-hover table-dark">
         <tr>
             <th>
-                <p>CurrentView</p>
+                <p>Current view</p>
             </th>
             <th>
-                <p>TranslationKey</p>
+                <p>Translation key</p>
             </th>
             <th>
                 Svensk text
@@ -38,7 +43,7 @@
             </th>
         </tr>
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.Translations)
         {
         <tr>
             <td>

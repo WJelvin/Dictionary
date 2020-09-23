@@ -44,9 +44,9 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Radera" class="btn btn-danger" /> |
-            <a href="javascript:void(0);" onclick="history.go(-1);">Tillbaka</a>
-        </div>
+    <div class="form-actions no-color">
+        <input type="submit" value="Radera" class="btn btn-danger" /> |
+        @Html.ActionLink("Tillbaka till Bläddra", "Browse")
+    </div>
     }
 </div>
